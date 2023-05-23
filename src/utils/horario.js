@@ -5,7 +5,7 @@ const chrono = require('chrono-node');
 const chatbot = require("../api/chatbot.js");
 const conf = require('../utils/confHorario');
 
-async function controlHorario(entities, traits, res) {
+async function controlHorario(entities, user_id) {
 
     var date = entities['date:date']?.[0]?.value;
     var time = entities['time:time']?.[0]?.value;
@@ -30,6 +30,7 @@ async function controlHorario(entities, traits, res) {
     var endEu = new Date(new Date(endUTC).getTime() + 2 * 60 * 60 * 1000);
 
     const data = {
+        user_id: user_id,
         title: tittle,
         start: startEu,
         end: endEu

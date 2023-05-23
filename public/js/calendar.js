@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $('#calendar').fullCalendar({
       header: {
-        left: 'prev,next today',
+        left: 'prev,next,today',
         center: 'title',
         right: 'agendaDay,agendaWeek,month'
       },
@@ -9,6 +9,7 @@ $(document).ready(function () {
       navLinks: true,
       editable: true,
       eventLimit: true,
+      selectable:true,
       events: 'calendar/getEventos',
     });
   });

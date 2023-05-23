@@ -10,7 +10,7 @@ async function controlTabs(entities, traits, res) {
         case "open":
           try{
             var object = entities['object:object']?.[0]?.value;
-            var link = await extraerURL(await chatbot("Escribe el url de "+ object))
+            var link = await extraerURL(await chatbot("Escribe el url de "+ object+"con formato 'https://...'"))
             conf.url = link;
             respuesta = 'Abriendo '+object;
           }catch(err){

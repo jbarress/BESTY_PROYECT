@@ -1,18 +1,13 @@
-const fs = require('fs');
-const path = require('path');
 
 const { Configuration, OpenAIApi } = require("openai");
 
-const OPENAI_API_KEY = "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"
+const OPENAI_API_KEY = "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"
 const configuration = new Configuration({ apiKey: OPENAI_API_KEY });
 const openai = new OpenAIApi(configuration);
 
-
-const CONVERSATION_FILE_PATH = path.join(__dirname + '/../conversation.txt');
-
 async function chatbot(question) {
   var respuesta = "";
-  var conversation = await getConversation();
+  var conversation = "";
 
   conversation += "\nHumano:" + question + "\nBesty:";
 
@@ -20,7 +15,7 @@ async function chatbot(question) {
     model: "text-davinci-003",
     prompt: conversation,
     temperature: 0.9,
-    max_tokens: 400,
+    max_tokens: 500,
     top_p: 1.0,
     frequency_penalty: 0.5,
     presence_penalty: 0.5,
@@ -29,35 +24,9 @@ async function chatbot(question) {
   respuesta = response.data.choices[0].text;
   conversation += respuesta;
 
-  await saveConversation(conversation);
-
   console.log(respuesta)
   return respuesta;
 }
 
-async function getConversation() {
-  let conversation = "";
-
-  try {
-    conversation = await fs.promises.readFile(CONVERSATION_FILE_PATH, 'utf-8');
-  } catch (error) {
-    if (error.code === 'ENOENT') {
-      // File doesn't exist yet, return an empty string
-      return "";
-    }
-    throw error;
-  }
-
-  return conversation;
-}
-
-async function saveConversation(conversation) {
-  let conversationLines = conversation.trim().split('\n');
-
-
-  // Join the lines and save to the file
-  const newConversation = conversationLines.join('\n');
-  await fs.promises.writeFile(CONVERSATION_FILE_PATH, newConversation);
-}
 
 module.exports = chatbot;

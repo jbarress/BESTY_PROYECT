@@ -4,7 +4,7 @@ const Transaccion = require('../../models/transaccion')
 const conf = require('../../public/js/configuracion')
 const chatbot = require("../api/chatbot.js");
 
-async function controlContacts(entities, traits, res) {
+async function controlContacts(entities, user_id) {
 
   var action = entities['action:action']?.[0]?.value;
   var respuesta
@@ -26,6 +26,7 @@ async function controlContacts(entities, traits, res) {
         var numTel = entities['wit$phone_number:phone_number']?.[0]?.value;
         var email = entities['wit$email:email']?.[0]?.value;
         const data = {
+          user_id: user_id,
           nombre: nombre,
           telefono: numTel,
           email: email
@@ -82,6 +83,7 @@ async function controlContacts(entities, traits, res) {
           respuesta = `El contacto ${nombre} ha sido modificado.`;
         }
       }
+      break;
     default:
       respuesta = chatbot(`Imagina que eres un asistente virtual. Escribe la respuesta que darias para avisar de un error al no detectar un comando claro sobre los contactos`)
 

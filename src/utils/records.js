@@ -4,7 +4,7 @@ const chatbot = require("../api/chatbot.js");
 const conf = require('../../public/js/configuracion');
 const aux = require("../utils/auxiliarFunctions");
 
-async function controlRecords(entities, traits, res) {
+async function controlRecords(entities, user_id) {
 
     var action = entities['action:action']?.[0]?.value;
 
@@ -38,6 +38,7 @@ async function controlRecords(entities, traits, res) {
                 var end = new Date(start.getTime() + (60 * 60 * 1000)); // 1 hora en milisegundos = 60 minutos x 60 segundos x 1000 milisegundos
 
                 const data = {
+                    user_id: user_id,
                     title: nombre,
                     start: start,
                     end: end

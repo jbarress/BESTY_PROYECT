@@ -10,7 +10,8 @@ app.get('/', (req, res) => {
 });
 
 app.get('/getEventos', async (req, res) => {
-    const records = await Record.find({});
+    const user_id = req.user._id.toString();
+    const records = await Record.find({user_id: user_id});
     res.json(records);
 });
 

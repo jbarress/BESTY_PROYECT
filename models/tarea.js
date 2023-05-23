@@ -1,17 +1,17 @@
 
 const mongoose = require('mongoose');
-let TareaSchema = new  mongoose.Schema({
+let TareaSchema = new mongoose.Schema({
 
     nombre: {
         type: String
     },
     descripcion: {
-        type : String,
-        required: true 
+        type: String,
+        required: true
     },
-    prioridad:{
+    prioridad: {
         type: Number,
-        required: true 
+        required: true
     },
 
 

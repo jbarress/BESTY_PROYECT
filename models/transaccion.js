@@ -2,9 +2,12 @@ const mongoose = require('mongoose');
 
 // Definir el esquema para los gastos e ingresos
 const transactionSchema = new mongoose.Schema({
+  user_id: {
+    type: String,
+    required: true,
+  },
   monto: {
     type: Number,
-    required: true
   },
   fecha: {
     type: Date,
@@ -12,11 +15,9 @@ const transactionSchema = new mongoose.Schema({
   },
   categoria: {
     type: String,
-    required: true
   },
   tipo: {
     type: String,
-    required: true
   }
 });
 

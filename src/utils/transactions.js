@@ -3,7 +3,7 @@ const Transaccion = require('../../models/transaccion');
 const Contacto = require('../../models/contact');
 const conf = require('../../public/js/configuracion')
 
-async function controlTransacciones(entities, traits, res) {
+async function controlTransacciones(entities, user_id) {
 
     var action = entities['action:action']?.[0]?.value;
     var respuesta;
@@ -26,6 +26,7 @@ async function controlTransacciones(entities, traits, res) {
                 var tipo = entities['object:object']?.[0]?.value;
 
                 const data = {
+                    user_id: user_id,
                     monto: monto,
                     categoria: categoria,
                     tipo: tipo
