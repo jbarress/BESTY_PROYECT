@@ -38,10 +38,6 @@ async function selectOrder(data, user_id) {
             console.log('entra en musica')
             respuesta = await controlMusic(entities, orden);
             break;
-        case 'horario':
-            console.log('entra en horario');
-            respuesta = await controlHorario(entities, user_id);
-            break;
         case 'tabs':
             console.log('entra en tabs');
             respuesta = await controlTabs(entities, orden);
