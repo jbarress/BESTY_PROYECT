@@ -51,7 +51,6 @@ var configuracion = {
     this._showMusic = false;
     this._idMusic = '';
     this._url = '';
-
   }
 };
 
