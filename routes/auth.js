@@ -19,9 +19,14 @@ app.post('/login', passport.authenticate('local', {
 }));
 
 app.get('/logout', (req, res) => {
-    req.logout();
-    res.redirect('/');
+    req.logout((err) => {
+        if (err) {
+            return res.status(500).send('Error en el servidor');
+        }
+        res.redirect('/');
+    });
 });
+
 
 app.get('/register', (req, res) => {
     res.render('register');

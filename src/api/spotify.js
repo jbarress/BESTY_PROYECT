@@ -1,3 +1,4 @@
+require('dotenv').config();
 const axios = require('axios');
 let ACCESS_TOKEN = null;
 
@@ -24,8 +25,8 @@ async function getTrackId(title, artist) {
 }
 
 async function actualizarTokenAcceso() {
-  const CLIENT_ID = 'c69cf4fe944c4d339054c6b61635bdf0';
-  const CLIENT_SECRET = 'ee245291fbad40deaae3ab40e22dbb69';
+  const CLIENT_ID = process.env.ACCES_TOKEN_SPOTIFY_CLIENT;
+  const CLIENT_SECRET = process.env.ACCES_TOKEN_SPOTIFY_SECRET;
   const response = await axios.post('https://accounts.spotify.com/api/token', null, {
     params: {
       grant_type: 'client_credentials'

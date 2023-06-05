@@ -22,16 +22,22 @@ router.get('/', isAuthenticated, async (req, res) => {
   res.render('index', {contactos, transacciones});
 })
 
-router.post('/', async (req, res) => {
+router.post('/', isAuthenticated,  async (req, res) => {
   var orden = req.body.orden;
   user_id = req.user._id.toString();
   if(orden!=undefined){
     try{
       var dataWit = await witQuery(req.body.orden)
-      var contactos = await Contacto.find({ user_id: user_id });
-      var transacciones = await Transaccion.find({ user_id: user_id });
-      var dataSelector = await selectOrder(dataWit, user_id);
-      res.render('index', {respuestaBot: dataSelector, contactos, transacciones});
+      console.log(dataWit.intents[0].name)
+      if(dataWit.intents[0].name == "logout"){
+        res.redirect("/auth/logout");
+      }else{
+        var contactos = await Contacto.find({ user_id: user_id });
+        var transacciones = await Transaccion.find({ user_id: user_id });
+        var dataSelector = await selectOrder(dataWit, user_id);
+        res.render('index', {respuestaBot: dataSelector, contactos, transacciones});
+      }
+
     }catch(err){
       var contactos = await Contacto.find({ user_id: user_id });
       var transacciones = await Transaccion.find({ user_id: user_id });

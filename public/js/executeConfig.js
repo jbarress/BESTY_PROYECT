@@ -32,7 +32,6 @@ fetch('/getConf')
         var oldUrl = localStorage.getItem('urlTab')
         if (data.url !== '' && oldUrl !== data.url) {
             window.open(data.url, '_blank');
-            console.log('abriendo pestaña nueva');
             localStorage.setItem('urlTab', data.url);   
         }
     })

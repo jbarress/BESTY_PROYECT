@@ -2,7 +2,6 @@ var configuracion = {
   _showCalendar: false,
   _showContacts: false,
   _showTransacciones: false,
-  _showTotalTransacciones: false,
   _showMusic: false,
   _idMusic: '',
   _url: '',
@@ -13,7 +12,6 @@ var configuracion = {
       showCalendar: this._showCalendar,
       showContacts: this._showContacts,
       showTransacciones: this._showTransacciones,
-      showTotalTransacciones: this._showTotalTransacciones,
       showMusic: this._showMusic,
       idMusic: this._idMusic,
       url: this._url
@@ -30,9 +28,6 @@ var configuracion = {
   set showTransacciones(value) {
     this._showTransacciones = value;
   },
-  set showTotalTransacciones(value) {
-    this._showTotalTransacciones = value;
-  },
   set showMusic(value) {
     this._showMusic = value;
   },
@@ -47,7 +42,6 @@ var configuracion = {
     this._showCalendar = false;
     this._showContacts = false;
     this._showTransacciones = false;
-    this._showTotalTransacciones = false;
     this._showMusic = false;
     this._idMusic = '';
     this._url = '';

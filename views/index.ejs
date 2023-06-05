@@ -11,16 +11,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
-
 </head>
 
 <body>
-
-
     <div class="drag" id="container">
         <div id="container-respuesta-bot">
             <% if (typeof respuestaBot !=='undefined' ) { %>
                 Besty: <%- respuestaBot %>
+                <input type="text" id="respuestaBotStr" style="display: none;" value='<%- respuestaBot %>'></input>
                     <% } %>
         </div>
         <div id="container-formulario">
@@ -30,11 +28,9 @@
             </form>
         </div>
     </div>
-
     <div class="drag" id="container-calendar">
         <div id="calendar" class="calendar"></div>
     </div>
-
     <div class="drag" id="container-contactos">
         <div class="container-titulo">
             <h2>Contactos</h2>
@@ -54,9 +50,7 @@
                 <% }) %>
         </ul>
     </div>
-
     <div class="drag" id="container-transacciones">
-
         <div class="container-titulo">
             <h2>Transacciones</h2>
         </div>
@@ -74,19 +68,33 @@
                 <% }) %>
         </ul>
     </div>
-
-
     <div class="drag" id="container-music">
         <div id="draggable">
-            <iframe id="spotify-player" title="Spotify Embed: Mama by Kid" src="" width="100%" height="100%" frameborder="0"
+            <iframe id="spotify-player" title="Spotify Embed: Mama by Kid" src="" width="100%" height="100%"
+                frameborder="0"
                 allow="autoplay; clipboard-write; encrypted-media;encrypted-media; fullscreen; picture-in-picture "
                 loading="lazy" allowtransparency="true">
             </iframe>
         </div>
     </div>
-    
 
+    <script>
+        // Obtén la respuesta del bot desde el servidor
+        var respuesta = document.getElementById('respuestaBotStr').value;
+        if(respuesta != undefined && respuesta != ""){
+            // Función para reproducir el audio
+            function reproducirAudio(texto) {
+                const utterance = new SpeechSynthesisUtterance(texto);
+                speechSynthesis.speak(utterance);
+            }
+            console.log(respuesta)
+            // Reproducir el audio cuando la página se carga
+            window.addEventListener('load', function () {
+                reproducirAudio(respuesta);
+            });
+        }
 
+    </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>

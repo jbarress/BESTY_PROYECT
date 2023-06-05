@@ -1,6 +1,7 @@
+require('dotenv').config();
 const { Wit, log } = require('node-wit');
 // Setea el token de acceso del bot de Wit.ai
-const client = new Wit({ accessToken: 'W4YG7TJ5O62DFSTSX5IBRDCFJMPV2N72' });
+const client = new Wit({ accessToken: process.env.ACCES_TOKEN_WIT });
 
 function witQuery(message) {
   try{

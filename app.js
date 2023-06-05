@@ -12,6 +12,7 @@ const conf = require(__dirname + '/public/js/configuracion.js');
 
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://127.0.0.1:27017/asistente');
+
 let app = express();
 
 conf.inicializar();
